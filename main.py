@@ -77,12 +77,12 @@ while(cap.isOpened()):
         mask2=cv2.morphologyEx(imBin2,cv2.MORPH_CLOSE,kernalOp)
 
         #Closing i.e First Dilate then Erode
-        mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,kernalCl)
-        mask2=cv2.morphologyEx(mask2,cv2.MORPH_CLOSE,kernalCl)
+        mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,np.float32(kernalCl))
+        mask2=cv2.morphologyEx(mask2,cv2.MORPH_CLOSE,np.float32(kernalCl))
 
 
         #Find Contours
-        _, countours0,hierarchy=cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+        countours0,hierarchy=cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
         for cnt in countours0:
             area=cv2.contourArea(cnt)
             print(area)
